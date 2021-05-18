@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 4.0.2 (Python 3.7.5 on linux)" generated="20210518 14:24:29.501" rpa="true" schemaversion="2">
+<suite id="s1" name="Tasks" source="/home/patrick/Robots/Certificate_bots/Certificate level II/tasks.robot">
+<test id="s1-t1" name="Order robots from RobotSpareBin Industries Inc">
+<kw name="Open the robot order website">
+<kw name="Open Available Browser" library="RPA.Browser.Selenium">
+<arg>${URL}</arg>
+<doc>Attempts to open a browser on the user's device from a set of
+supported browsers. Automatically downloads a corresponding webdriver
+if none is already installed.</doc>
+<msg timestamp="20210518 14:24:29.777" level="INFO">Creating an instance of the Chrome WebDriver.</msg>
+<msg timestamp="20210518 14:24:31.166" level="INFO">Created download root directory: /home/patrick/.robocorp/webdrivers</msg>
+<msg timestamp="20210518 14:24:31.166" level="INFO">Created symlink directory: /home/patrick/.robocorp/webdrivers</msg>
+<msg timestamp="20210518 14:24:31.167" level="INFO">Creating an instance of the Chrome WebDriver.</msg>
+<msg timestamp="20210518 14:24:32.738" level="INFO">Created download root directory: /home/patrick/.robocorp/webdrivers</msg>
+<msg timestamp="20210518 14:24:32.738" level="INFO">Created symlink directory: /home/patrick/.robocorp/webdrivers</msg>
+<msg timestamp="20210518 14:24:33.858" level="INFO">Skipping download. File /home/patrick/.robocorp/webdrivers/chrome/90.0.4430.24/chromedriver_linux64.zip already on filesystem.</msg>
+<msg timestamp="20210518 14:24:34.341" level="INFO">Created symlink: /home/patrick/.robocorp/webdrivers/chromedriver -&gt; /home/patrick/.robocorp/webdrivers/chrome/90.0.4430.24/chromedriver_linux64/chromedriver</msg>
+<msg timestamp="20210518 14:24:34.342" level="INFO">Creating an instance of the Chrome WebDriver.</msg>
+<msg timestamp="20210518 14:24:35.910" level="INFO">Creating an instance of the Firefox WebDriver.</msg>
+<msg timestamp="20210518 14:24:39.353" level="INFO">Created download root directory: /home/patrick/.robocorp/webdrivers</msg>
+<msg timestamp="20210518 14:24:39.354" level="INFO">Created symlink directory: /home/patrick/.robocorp/webdrivers</msg>
+<msg timestamp="20210518 14:24:39.354" level="INFO">Creating an instance of the Firefox WebDriver.</msg>
+<msg timestamp="20210518 14:24:42.909" level="INFO">Created Firefox browser with arguments: </msg>
+<msg timestamp="20210518 14:24:42.910" level="INFO" html="true">&lt;p&gt;Attempted combinations:&lt;/p&gt;&lt;div class="doc"&gt;&lt;table&gt;&lt;tr&gt;&lt;th&gt;Browser&lt;/th&gt;&lt;th&gt;Download&lt;/th&gt;&lt;th&gt;Error&lt;/th&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Chrome&lt;/td&gt;&lt;td&gt;False&lt;/td&gt;&lt;td&gt;Message: session not created: This version of ChromeDriver only supports Chrome version 80
+&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Chrome&lt;/td&gt;&lt;td&gt;True&lt;/td&gt;&lt;td&gt;Message: session not created
+from disconnected: Unable to receive message from renderer
+  (Session info: chrome=90.0.4430.93)
+&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Firefox&lt;/td&gt;&lt;td&gt;False&lt;/td&gt;&lt;td&gt;Message: newSession
+&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Firefox&lt;/td&gt;&lt;td&gt;True&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;</msg>
+<msg timestamp="20210518 14:24:42.910" level="INFO">Opening url 'https://robotsparebinindustries.com'</msg>
+<status status="PASS" starttime="20210518 14:24:29.776" endtime="20210518 14:24:43.281"/>
+</kw>
+<status status="PASS" starttime="20210518 14:24:29.776" endtime="20210518 14:24:43.282"/>
+</kw>
+<kw name="Get orders">
+<var>${orders}</var>
+<kw name="Download" library="RPA.HTTP">
+<var>${csv_file}</var>
+<arg>${CSV_FILE_URL}</arg>
+<arg>overwrite=True</arg>
+<doc>An alias for the ``HTTP Get`` keyword.</doc>
+<msg timestamp="20210518 14:24:43.285" level="INFO">Creating a new HTTP session</msg>
+<msg timestamp="20210518 14:24:43.285" level="INFO">Creating Session using : alias=rpasession_alias.httpsrobotsparebinindustries.com, url=https://robotsparebinindustries.com, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=True,                     debug=0 </msg>
+<msg timestamp="20210518 14:24:43.356" level="INFO">GET Request : url=https://robotsparebinindustries.com/orders.csv 
+ path_url=/orders.csv 
+ headers={'User-Agent': 'python-requests/2.25.1', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive'} 
+ body=None 
+ </msg>
+<msg timestamp="20210518 14:24:43.356" level="INFO">GET Response : url=https://robotsparebinindustries.com/orders.csv 
+ status=200, reason=OK 
+ body=Order number,Head,Body,Legs,Address
+1,1,2,3,Address 123
+2,4,1,5,Address 456
+3,6,2,3,Address 789
+4,2,3,2,Address 1
+5,3,5,1,Address 2
+6,1,6,6,Address 3
+7,5,1,5,Address 4
+8,2,3,3,Address 5
+9,3,2,2,Address 6
+10,4,4,2,Address 7
+11,6,6,1,Address 8
+12,1,3,3,Address 9
+13,1,5,4,Address A
+14,3,1,5,Address B
+15,3,2,6,Address C
+16,6,3,6,Address D
+17,5,4,1,Address E
+18,2,5,1,Address F
+19,4,6,2,Address G
+20,1,1,5,Address H 
+ </msg>
+<msg timestamp="20210518 14:24:43.357" level="INFO">${csv_file} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20210518 14:24:43.284" endtime="20210518 14:24:43.357"/>
+</kw>
+<kw name="Read Table From Csv" library="RPA.Tables">
+<var>${csv_table}</var>
+<arg>${csv_file}</arg>
+<doc>Read a CSV file as a table.</doc>
+<msg timestamp="20210518 14:24:43.358" level="FAIL">TypeError: expected str, bytes or os.PathLike object, not Response</msg>
+<status status="FAIL" starttime="20210518 14:24:43.357" endtime="20210518 14:24:43.358"/>
+</kw>
+<status status="FAIL" starttime="20210518 14:24:43.282" endtime="20210518 14:24:43.358"/>
+</kw>
+<for flavor="IN">
+<var>${row}</var>
+<value>@{orders}</value>
+<iter>
+<var name="${row}">${row}</var>
+<kw name="Notebook Print" library="RPA.core.notebook">
+<arg>${row}</arg>
+<doc>Display IPython Markdown object in the notebook</doc>
+<status status="NOT RUN" starttime="20210518 14:24:43.358" endtime="20210518 14:24:43.359"/>
+</kw>
+<status status="NOT RUN" starttime="20210518 14:24:43.358" endtime="20210518 14:24:43.359"/>
+</iter>
+<status status="NOT RUN" starttime="20210518 14:24:43.358" endtime="20210518 14:24:43.359"/>
+</for>
+<status status="FAIL" starttime="20210518 14:24:29.775" endtime="20210518 14:24:43.359">TypeError: expected str, bytes or os.PathLike object, not Response</status>
+</test>
+<doc>Certificate level II</doc>
+<status status="FAIL" starttime="20210518 14:24:29.503" endtime="20210518 14:24:43.360"/>
+</suite>
+<statistics>
+<total>
+<stat pass="0" fail="1" skip="0">All Tasks</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="0" fail="1" skip="0" id="s1" name="Tasks">Tasks</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
